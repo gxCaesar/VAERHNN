@@ -1,0 +1,10 @@
+﻿Candidate,CI
+Morgan-AAC,0.791
+Morgan-Quasi-seq,0.791
+Morgan-CNN,0.791
+Morgan-GRU,0.83
+Morgan-LSTM,0.817
+Morgan-Transformer,0.804
+PubChem-AAC,0.791
+PubChem-Transformer,0.791
+RDKit-2D-Transformer,0.791
