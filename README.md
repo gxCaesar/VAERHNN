@@ -53,6 +53,7 @@ conda env create -f environment.yaml
 conda activate vaerhnn
 ```
 
+
 ## Dataset:
 + VAER: molecular activity prediction.
 	+ GFA_features.csv: pIC50 and GFA features of inhibitors against the target.
@@ -60,19 +61,41 @@ conda activate vaerhnn
 	+ candidate.csv: features of the candidates for drug repurposing.
 
 + HNN: DTA prediction.
-	+ chembl.txt: SMILES and DTA (pIC50) of inhibitors against the target
-	+ candidate.txt: SMILES of the candidates for drug repurposing.
+	+ chembl.txt: SMILES and DTA (pIC50) of inhibitors, as well as the amino acid sequence of the target.
+	+ candidate.txt: SMILES of the candidates for drug repurposing and the amino acid sequence of the target.
 
-## Training EMOGI with Your Own Data
-First of all, please treat your data as our data. Then we perform dimensionality reduction via feature selector as follows:
+## Training VAER with Your Own Data
+First of all, please treat your data as our data. Then we perform dimensionality reduction.
 ```
 cd VAER
 python Feature_selection.py
 ```
-The selected features and pIC50 then constitute a dataset, which is used as the training for VAER. We perform the training of VAER with the following command:
+The selected features and pIC50 then constitute a dataset, which is used as the training for VAER. Please perform the training of VAER with the following command:
+```
+python VAER.py
+```
+Then you can get the training performance of the ensemble learning and the pIC50 predictions of the candidates by VAER. For comparison with the baseline ML model, you should perform the following:
+```
+python Comparison_boosting.py
 ```
 
+## Training HNN with Your Own Data
+Please process your inhibitor or agonist, target amino acid sequence and candidate data for training as our data. Then, please perform the training of the hybrid neural network consisting of 72 encoders for drugs and targets, as follows:
 ```
+cd HNN
+python RunALL.py
+```
+This process can take anywhere from an hour to several hours (depending on your data). At the end of training, you will have the C-index and MSE performance for 72 model combinations, and DTA predictions for the candidates. Then organize the data of C-index and MSE, and draw a heat map of performance, which can easily see the distribution of performance and select some top-performing model combinations, as follows:
+```
+python Plot_CI_MSE.py
+```
+Please select a combination of models with both C-index and MSE in red in the heatmap. Then, the calculation of voting average is performed with CI as the weight factor. The prediction of DTA by HNN is obtained as follows:
+```
+python Voting_averaged.py
+```
+
+##  Contact
+Please contact chengx48@mail2.sysu.edu.cn for help or submit an issue.
 
 
 
