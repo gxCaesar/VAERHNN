@@ -8,7 +8,7 @@ The overall flow chart is as follows:
 </div>
 
 ## Reproducibility
-The analysis in the paper can be completely reproduced. In the directory, we have set up three folders: VAER and HNN. You can reproduce or train your own data in the folder. In addition, you can also use it in a targeted manner. Folders to perform activity predictions and DTA predictions.
+The analysis in the paper can be completely reproduced. In the directory, we have set up two folders: VAER and HNN. You can reproduce or train your own data in the folder. In addition, you can also use it in a targeted manner. Go to the folders to perform activity predictions and DTA predictions.
 You may need the dataset indicated below to reproduce all results correctly.
 Also, if you want to leverage the VAERHNN protocol for drug repurposing for a disease, or if you want to retrain the model, check out the appropriate sections in this README.
 
@@ -54,7 +54,7 @@ conda activate vaerhnn
 ```
 
 
-## Dataset:
+## Data for VAERHNN:
 + VAER: molecular activity prediction.
 	+ GFA_features.csv: pIC50 and GFA features of inhibitors against the target.
 	+ inhibitor.csv: pIC50 and features of inhibitors against the target after feature selection.
